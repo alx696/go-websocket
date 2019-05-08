@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>测试</title>
+  <style>
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let webSocket = new WebSocket('ws://127.0.0.1:8080');
+      webSocket.onopen = () => {
+        console.debug('连接已经打开');
+        webSocket.send('你好');
+      };
+      webSocket.onmessage = (evt) => {
+        console.info(evt.data);
+      };
+      webSocket.onclose = (evt) => {
+        console.warn("连接已经关闭", evt);
+      };
+      webSocket.onerror = (evt) => {
+        console.error("错误", evt);
+      };
+    });
+  </script>
+</head>
+<body>
+需在web服务环境中运行!
+</body>
+</html>
